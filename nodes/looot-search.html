@@ -1,0 +1,52 @@
+<script type="text/javascript">
+  RED.nodes.registerType("looot search", {
+    category: "looot",
+    color: "#a6bbcf",
+    defaults: {
+      name: { value: "" },
+      account: { type: "looot-config", required: false },
+      query: { value: "" },
+      limit: { value: 10 },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "search.svg",
+    label: function () {
+      return this.name || "looot search";
+    },
+  });
+</script>
+
+<script type="text/html" data-template-name="looot search">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-account"><i class="fa fa-user"></i> Account</label>
+    <input type="text" id="node-input-account" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-query"><i class="fa fa-search"></i> Query</label>
+    <input type="text" id="node-input-query" placeholder="find work email from name and domain" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-limit">Limit</label>
+    <input type="number" id="node-input-limit" min="1" max="50" />
+  </div>
+</script>
+
+<script type="text/html" data-help-name="looot search">
+  <p>Searches the looot catalog (4,200+ data APIs). Free, it never spends credit.</p>
+  <h3>Inputs</h3>
+  <dl class="message-properties">
+    <dt class="optional">payload <span class="property-type">string</span></dt>
+    <dd>The search text, used when the Query field is empty.</dd>
+  </dl>
+  <h3>Outputs</h3>
+  <dl class="message-properties">
+    <dt>payload <span class="property-type">object</span></dt>
+    <dd>The catalog response. Each row has an endpoint id you can pass to <code>looot run</code>.</dd>
+  </dl>
+  <p>Docs: <a href="https://docs.looot.ai" target="_blank">docs.looot.ai</a>.</p>
+</script>

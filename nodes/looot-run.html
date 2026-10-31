@@ -1,0 +1,62 @@
+<script type="text/javascript">
+  RED.nodes.registerType("looot run", {
+    category: "looot",
+    color: "#a6bbcf",
+    defaults: {
+      name: { value: "" },
+      account: { type: "looot-config", required: false },
+      endpointId: { value: "" },
+      maxCostUsd: { value: "" },
+      wait: { value: 30 },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "arrow-in.svg",
+    label: function () {
+      return this.name || this.endpointId || "looot run";
+    },
+  });
+</script>
+
+<script type="text/html" data-template-name="looot run">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-account"><i class="fa fa-user"></i> Account</label>
+    <input type="text" id="node-input-account" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-endpointId">Endpoint</label>
+    <input type="text" id="node-input-endpointId" placeholder="job:people.email.find" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-maxCostUsd">Max cost (USD)</label>
+    <input type="text" id="node-input-maxCostUsd" placeholder="0.10" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-wait">Wait (s)</label>
+    <input type="number" id="node-input-wait" min="0" max="60" />
+  </div>
+</script>
+
+<script type="text/html" data-help-name="looot run">
+  <p>Runs one looot endpoint or job. <b>This spends credit</b> when the call succeeds. A failed call costs nothing.</p>
+  <h3>Inputs</h3>
+  <dl class="message-properties">
+    <dt>payload <span class="property-type">object</span></dt>
+    <dd>The input for the endpoint, for example <code>{"firstName":"Ada","lastName":"Lovelace","domain":"example.com"}</code>.</dd>
+    <dt class="optional">endpointId <span class="property-type">string</span></dt>
+    <dd>Used when the Endpoint field is empty. Job ids look like <code>job:people.email.find</code>.</dd>
+  </dl>
+  <h3>Details</h3>
+  <p><b>Max cost</b> sets <code>fallback.maxCostUsd</code>, the most a run with provider fallback may spend. Leave it empty for no fallback.</p>
+  <p>The idempotency key is the message id (<code>msg._msgid</code>), so a retried message does not pay twice.</p>
+  <h3>Outputs</h3>
+  <dl class="message-properties">
+    <dt>payload <span class="property-type">object</span></dt>
+    <dd>The run object. Read <code>status</code> and <code>outcome</code> on it, a miss is a normal answer.</dd>
+  </dl>
+  <p>Find endpoint ids with <code>looot search</code> (free). Docs: <a href="https://docs.looot.ai" target="_blank">docs.looot.ai</a>.</p>
+</script>

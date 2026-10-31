@@ -1,0 +1,34 @@
+<script type="text/javascript">
+  RED.nodes.registerType("looot-config", {
+    category: "config",
+    defaults: {
+      name: { value: "" },
+      baseUrl: { value: "https://api.looot.ai" },
+    },
+    credentials: { token: { type: "password" } },
+    label: function () {
+      return this.name || "looot account";
+    },
+  });
+</script>
+
+<script type="text/html" data-template-name="looot-config">
+  <div class="form-row">
+    <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-config-input-name" placeholder="looot account" />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-token"><i class="fa fa-key"></i> Token</label>
+    <input type="password" id="node-config-input-token" />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-baseUrl"><i class="fa fa-globe"></i> API URL</label>
+    <input type="text" id="node-config-input-baseUrl" />
+  </div>
+</script>
+
+<script type="text/html" data-help-name="looot-config">
+  <p>Holds your looot agent token. Node-RED stores it as a credential, so it is not exported with your flows.</p>
+  <p>Get a token at <a href="https://looot.ai" target="_blank">looot.ai</a> under Settings, Agent tokens. If the field is empty, the nodes read the <code>LOOOT_TOKEN</code> environment variable.</p>
+  <p>Docs: <a href="https://docs.looot.ai" target="_blank">docs.looot.ai</a>.</p>
+</script>

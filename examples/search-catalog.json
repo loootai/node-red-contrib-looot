@@ -1,0 +1,7 @@
+[
+  {"id":"cfg2","type":"looot-config","name":"looot account","baseUrl":"https://api.looot.ai"},
+  {"id":"tab2","type":"tab","label":"looot: search the catalog (free)"},
+  {"id":"inj2","type":"inject","z":"tab2","name":"query","props":[{"p":"payload"}],"payload":"verify an email address","payloadType":"str","x":140,"y":80,"wires":[["srch2"]]},
+  {"id":"srch2","type":"looot search","z":"tab2","name":"","account":"cfg2","query":"","limit":10,"x":340,"y":80,"wires":[["dbg2"]]},
+  {"id":"dbg2","type":"debug","z":"tab2","name":"rows","active":true,"tosidebar":true,"complete":"payload","x":530,"y":80,"wires":[]}
+]

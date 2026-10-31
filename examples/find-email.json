@@ -1,0 +1,7 @@
+[
+  {"id":"cfg1","type":"looot-config","name":"looot account","baseUrl":"https://api.looot.ai"},
+  {"id":"tab1","type":"tab","label":"looot: find a work email"},
+  {"id":"inj1","type":"inject","z":"tab1","name":"Ada Lovelace","props":[{"p":"payload"}],"payload":"{\"firstName\":\"Ada\",\"lastName\":\"Lovelace\",\"domain\":\"example.com\"}","payloadType":"json","x":150,"y":80,"wires":[["run1"]]},
+  {"id":"run1","type":"looot run","z":"tab1","name":"","account":"cfg1","endpointId":"job:people.email.find","maxCostUsd":"0.10","wait":30,"x":380,"y":80,"wires":[["dbg1"]]},
+  {"id":"dbg1","type":"debug","z":"tab1","name":"result","active":true,"tosidebar":true,"complete":"payload","x":590,"y":80,"wires":[]}
+]
