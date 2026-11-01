@@ -4,12 +4,14 @@ Node-RED nodes for [looot](https://looot.ai). One API key and a prepaid balance 
 
 ## Install
 
-In Node-RED, open Menu, Manage palette, Install, and search for `node-red-contrib-looot`. Or from your Node-RED user directory:
+The package is not on npm yet, so the Manage palette search does not find it. Install it from GitHub in your Node-RED user directory, then restart Node-RED:
 
 ```bash
 cd ~/.node-red
-npm install node-red-contrib-looot
+npm install github:loootai/node-red-contrib-looot#v0.1.0
 ```
+
+Once it is on npm, `npm install node-red-contrib-looot` and the palette search will work too.
 
 Needs Node-RED 3.0 or newer and Node 18 or newer. The package has no runtime dependencies.
 
